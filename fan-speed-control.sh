@@ -10,9 +10,10 @@
 # IPMI SETTINGS:
 # You must set the iDRAC IP_ADDRESS, iDRAC_username, and IDRAC_password
 # For better security, change root/calvin to something else first in your iDRAC
-IPMI_HOST=<IP_ADDRESS>
-IPMI_USER=<iDRAC_username>
-IPMI_PW=<iDRAC_password>
+
+IPMI_HOST=%%HOST%%
+IPMI_USER=%%USER%%
+IPMI_PW=%%PASSWORD%%
 
 # TEMPERATURE
 # Extract MAX temperature from first core in celsius using sensors command
@@ -22,7 +23,7 @@ MAX_TEMP=$(sensors | grep Core | awk '/\+[0-9][0-9]\./{ print $6; exit }' | grep
 MAX_TEMP=$(awk "BEGIN { print ${MAX_TEMP} * 0.9 }" )
 
 MIN_TEMP_PERCENT=15
-TEMP_PERCENT_INCR=1.1
+TEMP_PERCENT_INCR=1.5
 # If you want to calculate use the following
 # TEMP_PERCENT_INCR=$(awk "BEGIN { print 100/(${MAX_TEMP} - ${MIN_TEMP}) }" )
 
